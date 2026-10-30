@@ -106,15 +106,7 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 
 ---
 ## Komponent oversigt: 
-**Global**
 
-**Index page**
-
-**Product page**
-
-**Single product view page**
-
-**Contact page**
 ---
 
 
