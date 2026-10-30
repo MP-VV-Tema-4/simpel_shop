@@ -9,7 +9,7 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 | Overordnet layout og sidestruktur                         |           |
 | Opsætning af CSS Grid til sidernes indhold                |           |
 | Eventuel brug af CSS Subgrid                              |           |
-| Responsivt layout til forskellige skærmstørrelser         |           |
+| Responsivt layout til forskellige skærmstørrelser         | INGEN     |
 | Designsystem: farver, typografi, spacing og CSS-variabler |           |
 | Global styling i `globals.css`                            |           |
 | Fælles layout i `layout.js`                               |           |
