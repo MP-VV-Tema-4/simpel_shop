@@ -28,7 +28,7 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 | Opgave                                         | Ansvarlig |
 | ---------------------------------------------- | --------- |
 | Hero-sektion med overskrift, tekst og CTA-knap |           |
-| Forsidens øvrige sektioner og indhold          |           |
+| Forsidens øvrige sektioner og indhold          |  Mitzie   |
 | Visning af udvalgte/populære produkter         |           |
 | Samling af forsiden i `page.js`                |           |
 
@@ -39,7 +39,7 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 | Hentning af produkter fra DummyJSON API                       |           |
 | Udvikling og styling af `ProductCard.jsx`                     |           |
 | Visning af produktbillede, navn, pris og rating i produktkort |           |
-| Genanvendelige knapper i forskellige varianter                |           |
+| Genanvendelige knapper i forskellige varianter                | Mitzie    |
 | Favoritikon (stjerne) på produktkort                          |           |
 | Funktion til at tilføje og fjerne favoritter                  |           |
 | Produktoversigt i `products/page.js`                          |           |
@@ -51,7 +51,7 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 | ------------------------------------------------------------------ | --------- |
 | Udvikling og styling af søgefelt                                   |           |
 | Implementering af produktsøgning med Fuse.js                       |           |
-| Hentning og visning af produktkategorier                           |           |
+| Hentning og visning af produktkategorier                           |   Mitzie  |
 | Filtrering af produkter efter kategori                             |           |
 | Håndtering af tomme søgeresultater og ingen produkter i kategorien |           |
 
@@ -97,7 +97,7 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 | Test af API-kald og produktvisning        |           |
 | Test af søgning og kategorifiltrering     |           |
 | Test af favoritfunktion                   |           |
-| Test af indkøbskurv og prisberegning      |           |
+| Test af indkøbskurv og prisberegning      |  Mitzie   |
 | Test af checkout-flow                     |           |
 | Kontrol af responsivt design              |           |
 | Kontrol af GitHub-repository og README    |           |
@@ -105,6 +105,18 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 | Kontrol af alle afleveringskrav           |           |
 
 ---
+## Komponent oversigt: 
+**Global**
+
+**Index page**
+
+**Product page**
+
+**Single product view page**
+
+**Contact page**
+---
+
 
 ## Installerede biblioteker
 
