@@ -2,10 +2,11 @@
 "use client";
 
 import { useState } from "react";
+import Fuse from "fuse.js";
 import ProductFilters from "./ProductFilters";
 import ProductCard from "./ProductCard";
 
-export default function ProductCatalog({ products }) {
+export default function ProductCatalog({ products, query = "", children }) {
   const highestPrice = Math.ceil(
     Math.max(0, ...products.map((product) => product.price))
   );
@@ -14,7 +15,24 @@ export default function ProductCatalog({ products }) {
   const [minRating, setMinRating] = useState("0");
   const [sortBy, setSortBy] = useState("default");
 
-  let filteredProducts = products.filter(
+  const searchTerm = query.trim();
+
+  const fuse = new Fuse(products, {
+    keys: ["title", "description", "category"],
+    threshold: 0.4,
+    ignoreLocation: true,
+  });
+
+  const exactMatch = products.some(
+    (product) =>
+      product.title.toLowerCase() === searchTerm.toLowerCase()
+  );
+
+  const searchResults = searchTerm
+    ? fuse.search(searchTerm).map((result) => result.item)
+    : products;
+
+  let filteredProducts = searchResults.filter(
     (product) =>
       product.price <= maxPrice &&
       product.rating >= Number(minRating)
@@ -49,7 +67,15 @@ export default function ProductCatalog({ products }) {
         onReset={resetFilters}
       />
 
-      <section>
+      <section className="min-w-0">
+        {children}
+        {searchTerm && !exactMatch && filteredProducts.length > 0 && (
+          <p className="mb-3 text-sm text-gray-600">
+            No exact matches for "{query}" — here are some products
+            you might mean:
+          </p>
+        )}
+
         <p className="mb-5 text-sm text-gray-500">
           Showing {filteredProducts.length} products
         </p>
@@ -62,7 +88,7 @@ export default function ProductCatalog({ products }) {
           </div>
         ) : (
           <p className="py-10 text-gray-500">
-            No products match your filters.
+            No products match your search or filters.
           </p>
         )}
       </section>
