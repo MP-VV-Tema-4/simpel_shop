@@ -1,12 +1,14 @@
 
+import Link from "next/link";
+
 export default function Header() {
   return (
     <>
       <header className="site-header">
         <nav className="site-nav" aria-label="Main navigation">
           <ul className="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/products">Products</a></li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/products">Products</Link></li>
           </ul>
 
           <form className="search-form" action="/products" method="GET">
@@ -35,7 +37,7 @@ export default function Header() {
             />
           </form>
 
-          <a href="/cart" className="cart-link">
+          <Link href="/cart" className="cart-link">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="21"
@@ -52,7 +54,7 @@ export default function Header() {
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
             </svg>
             <span>Cart</span>
-          </a>
+          </Link>
         </nav>
       </header>
 
@@ -69,7 +71,8 @@ export default function Header() {
           max-width: 75rem;
           min-height: 85px;
           margin: 0 auto;
-          padding: 1rem 0;
+          padding: 1rem 1.5rem;
+          box-sizing: border-box;
           display: grid;
           grid-template-columns: 1fr 360px 1fr;
           align-items: center;
@@ -86,27 +89,29 @@ export default function Header() {
         }
 
         .nav-links a,
-        .cart-link {
+        .site-nav .cart-link {
+          display: inline-flex;
+          align-items: center;
           color: #222;
-          font-size: .9rem;
+          font-size: 0.9rem;
           font-weight: 600;
           text-decoration: none;
           text-transform: uppercase;
-          letter-spacing: .04em;
-          transition: color .2s ease;
+          letter-spacing: 0.04em;
+          transition: color 0.2s ease;
         }
 
         .nav-links a:hover,
-        .cart-link:hover {
+        .site-nav .cart-link:hover {
           color: #888;
         }
 
         .search-form {
           display: flex;
           align-items: center;
-          gap: .7rem;
+          gap: 0.7rem;
           width: 100%;
-          padding: .7rem 1rem;
+          padding: 0.7rem 1rem;
           box-sizing: border-box;
           background: #f5f5f5;
           border: 1px solid #eee;
@@ -132,7 +137,7 @@ export default function Header() {
           background: transparent;
           color: #222;
           font: inherit;
-          font-size: .85rem;
+          font-size: 0.85rem;
         }
 
         .search-form input::placeholder {
@@ -143,24 +148,43 @@ export default function Header() {
           border-color: #999;
         }
 
-        .cart-link {
-          display: flex;
-          align-items: center;
+        .site-nav .cart-link {
           justify-self: end;
-          gap: .6rem;
+          flex-direction: row;
+          gap: 0.6rem;
+          white-space: nowrap;
+          line-height: normal;
+        }
+
+        .site-nav .cart-link svg {
+          display: block;
+          flex-shrink: 0;
         }
 
         @media (max-width: 850px) {
           .site-nav {
-            padding: 1rem 1.5rem;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            box-sizing: border-box;
           }
 
           .search-form {
             grid-column: 1 / -1;
             grid-row: 2;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .site-nav {
+            padding: 1rem;
+          }
+
+          .nav-links {
+            gap: 1.25rem;
+          }
+
+          .nav-links a,
+          .site-nav .cart-link {
+            font-size: 0.8rem;
           }
         }
       `}</style>
