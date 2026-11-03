@@ -14,8 +14,10 @@ async function getProducts() {
   return data.products;
 }
 
-export default async function ProductsPage() {
+export default async function ProductsPage({ searchParams }) {
   const products = await getProducts();
+  const params = await searchParams;
+  const query = params?.search || "";
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
@@ -27,7 +29,10 @@ export default async function ProductsPage() {
         Explore our selection of grocery products.
       </p>
 
-      <ProductCatalog products={products} />
+      <ProductCatalog
+        products={products}
+        query={query}
+      />
     </main>
   );
 }
