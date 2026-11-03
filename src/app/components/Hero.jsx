@@ -89,10 +89,15 @@ export default function Hero() {
                 <p>Discover our everyday favourites</p>
               </div>
 
-              <Link href="/products" className="view-all">
-                View all products
-                <span>→</span>
-              </Link>
+<Link
+  href="/products"
+  className="group inline-flex items-center gap-2 opacity-100 transition-opacity duration-300 hover:opacity-50"
+>
+  View all products
+  <span className="transition-transform duration-300 group-hover:translate-x-1">
+    →
+  </span>
+</Link>
             </div>
 
             {loading && (
