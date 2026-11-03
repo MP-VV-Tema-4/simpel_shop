@@ -4,6 +4,7 @@ import { create } from "zustand";
 export const useCartStore = create((set) => ({
   cart: [],
 
+  // Tilføj produkt til kurven
   addToCart: (product) =>
     set((state) => {
       const existingProduct = state.cart.find(
@@ -25,11 +26,13 @@ export const useCartStore = create((set) => ({
       };
     }),
 
+  // Fjern produkt fra kurven
   removeFromCart: (productId) =>
     set((state) => ({
       cart: state.cart.filter((item) => item.id !== productId),
     })),
 
+  // Opdater antal af et produkt
   updateQuantity: (productId, quantity) =>
     set((state) => ({
       cart:
@@ -42,5 +45,6 @@ export const useCartStore = create((set) => ({
             ),
     })),
 
+  // Tøm hele kurven
   clearCart: () => set({ cart: [] }),
 }));
