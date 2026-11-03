@@ -70,10 +70,6 @@ export default function Hero() {
                 Find your new everyday favourites.
               </p>
 
-              <Link href="/products" className="hero-button">
-                Shop Now
-                <span>→</span>
-              </Link>
             </div>
 
             {/* HERO IMAGE */}
