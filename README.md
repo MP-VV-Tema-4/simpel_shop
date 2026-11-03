@@ -39,7 +39,7 @@ Skriv navnet på den person, der har hovedansvaret for hver opgave. Den ansvarli
 | Hentning af produkter fra DummyJSON API                       |           |
 | Udvikling og styling af `ProductCard.jsx`                     |           |
 | Visning af produktbillede, navn, pris og rating i produktkort |           |
-| Genanvendelige knapper i forskellige varianter                | Mitzie    |
+| Genanvendelige knapper i forskellige varianter                |    |
 | Favoritikon (stjerne) på produktkort                          |           |
 | Funktion til at tilføje og fjerne favoritter                  |           |
 | Produktoversigt i `products/page.js`                          |           |
