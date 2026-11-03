@@ -87,9 +87,9 @@ export default async function RecipeSection() {
                       {recipe.servings} servings
                     </span>
 
-                    <span className="text-xs font-medium text-gray-800 transition group-hover:translate-x-1">
-                      View recipe →
-                    </span>
+                    <span className="text-xs font-medium text-gray-800 transition-opacity duration-300 group-hover:opacity-50">
+  View recipe →
+</span>
                   </div>
 
                 </div>

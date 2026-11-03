@@ -11,6 +11,7 @@ export default function ProductFilters({
   setSortBy,
   onReset,
 }) {
+
   return (
     <aside className="h-fit rounded-lg bg-gray-50 p-5">
       <h2 className="mb-6 text-lg font-bold">Filters</h2>
