@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function ProductCard({ product }) {
   return (
     <Link
-      href={`/detailview/${product.id}`}
+      href={`/products/${product.id}`}
       className="group block overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
     >
       {/* Produktbillede */}

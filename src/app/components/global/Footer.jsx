@@ -3,7 +3,6 @@ export default function Footer() {
   return (
     <>
       <footer className="site-footer">
-
         <div className="footer-main">
 
           <div className="footer-intro">
@@ -74,12 +73,12 @@ export default function Footer() {
         .footer-main {
           display: grid;
           grid-template-columns: 1.2fr 1fr;
-          gap: 5rem;
+          gap: 4rem;
 
           width: 100%;
           max-width: 75rem;
           margin: 0 auto;
-          padding: 5rem 0;
+          padding: 3rem 0;
           box-sizing: border-box;
         }
 
@@ -89,47 +88,47 @@ export default function Footer() {
         }
 
         .footer-intro h2 {
-          margin: 0 0 1.5rem;
+          margin: 0 0 1rem;
           color: #ffffff;
-          font-size: clamp(2.5rem, 5vw, 4rem);
+          font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 600;
           line-height: 1.05;
           letter-spacing: -0.04em;
         }
 
         .footer-intro p {
-          max-width: 34rem;
+          max-width: 32rem;
           margin: 0;
           color: #a5a5a5;
-          font-size: 1rem;
-          line-height: 1.8;
+          font-size: 0.9rem;
+          line-height: 1.6;
         }
 
         /* Link columns */
         .footer-columns {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 2rem;
-          padding-top: 0.5rem;
+          gap: 1.5rem;
+          padding-top: 0.25rem;
         }
 
         .footer-column {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 1.1rem;
+          gap: 0.8rem;
         }
 
         .footer-column h3 {
-          margin: 0 0 0.5rem;
+          margin: 0 0 0.25rem;
           color: #ffffff;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 600;
         }
 
         .footer-column a {
           color: #999999;
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           text-decoration: none;
           transition: color 0.2s ease;
         }
@@ -143,13 +142,13 @@ export default function Footer() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          gap: 2rem;
+          gap: 1.5rem;
 
           width: 100%;
           max-width: 75rem;
-          min-height: 85px;
+          min-height: 60px;
           margin: 0 auto;
-          padding: 1.5rem 0;
+          padding: 1rem 0;
           box-sizing: border-box;
 
           border-top: 1px solid #333333;
@@ -160,7 +159,7 @@ export default function Footer() {
           display: flex;
           align-items: center;
           flex-wrap: wrap;
-          gap: 1.25rem;
+          gap: 1rem;
         }
 
         .visa,
@@ -168,12 +167,12 @@ export default function Footer() {
         .paypal,
         .apple-pay {
           color: #ffffff;
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           font-weight: 700;
         }
 
         .visa {
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-style: italic;
         }
 
@@ -191,10 +190,10 @@ export default function Footer() {
           align-items: center;
           justify-content: flex-end;
           flex-wrap: wrap;
-          gap: 2rem;
+          gap: 1.5rem;
 
           color: #888888;
-          font-size: 0.8rem;
+          font-size: 0.75rem;
         }
 
         .footer-legal a {
@@ -219,9 +218,9 @@ export default function Footer() {
         @media (max-width: 850px) {
           .footer-main {
             grid-template-columns: 1fr;
-            gap: 3rem;
-            padding-top: 4rem;
-            padding-bottom: 4rem;
+            gap: 2rem;
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
           }
 
           .footer-intro {
@@ -232,20 +231,20 @@ export default function Footer() {
         /* Mobile */
         @media (max-width: 600px) {
           .footer-main {
-            padding: 3rem 1.25rem;
-            gap: 2.5rem;
+            padding: 2rem 1.25rem;
+            gap: 2rem;
           }
 
           .footer-columns {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            row-gap: 2rem;
+            row-gap: 1.5rem;
           }
 
           .footer-bottom {
             flex-direction: column;
             align-items: flex-start;
-            padding: 1.5rem 1.25rem;
-            gap: 1.5rem;
+            padding: 1.25rem;
+            gap: 1rem;
           }
 
           .footer-legal {
