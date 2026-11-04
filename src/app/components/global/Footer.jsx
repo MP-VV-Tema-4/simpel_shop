@@ -1,4 +1,6 @@
 
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <>
@@ -23,23 +25,23 @@ export default function Footer() {
 
             <div className="footer-column">
               <h3>Explore</h3>
-              <a href="/">Home</a>
-              <a href="/products">All products</a>
-              <a href="/cart">Shopping cart</a>
+              <Link href="/">Home</Link>
+              <Link href="/products">All products</Link>
+              <Link href="/cart">Shopping cart</Link>
             </div>
 
             <div className="footer-column">
               <h3>Information</h3>
-              <a href="/about">About us</a>
-              <a href="/contact">Contact</a>
-              <a href="/faq">FAQ</a>
+              <Link href="/about">About us</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/faq">FAQ</Link>
             </div>
 
             <div className="footer-column">
               <h3>Customer care</h3>
-              <a href="/shipping">Shipping</a>
-              <a href="/returns">Returns</a>
-              <a href="/terms">Terms and conditions</a>
+              <Link href="/shipping">Shipping</Link>
+              <Link href="/returns">Returns</Link>
+              <Link href="/terms">Terms and conditions</Link>
             </div>
 
           </div>
@@ -56,7 +58,7 @@ export default function Footer() {
 
           <div className="footer-legal">
             <span>© 2026 Simple Shop. All rights reserved.</span>
-            <a href="/privacy">Privacy Policy</a>
+            <Link href="/privacy">Privacy Policy</Link>
           </div>
 
         </div>

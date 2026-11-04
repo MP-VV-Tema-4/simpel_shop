@@ -1,4 +1,6 @@
 
+import Link from "next/link";
+
 export default function ProductHero() {
   return (
     <>
@@ -15,9 +17,9 @@ export default function ProductHero() {
             Discover our selection of fresh favourites.
           </p>
 
-          <a href="#products" className="product-hero-button">
+          <Link href="#products" className="product-hero-button">
             EXPLORE PRODUCTS
-          </a>
+          </Link>
         </div>
 
         <div className="product-hero-image">
