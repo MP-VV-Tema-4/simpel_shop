@@ -1,11 +1,14 @@
 
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useCartStore } from "../../store/cartStore";
 import { useFavoritesStore } from "../../store/FavoritesStore";
 
 export default function ProductCard({ product, compact = false }) {
+  const [quantity, setQuantity] = useState(1);
+
   const addToCart = useCartStore((state) => state.addToCart);
 
   const toggleFavorite = useFavoritesStore(
@@ -16,10 +19,24 @@ export default function ProductCard({ product, compact = false }) {
     state.favorites.some((item) => item.id === product.id)
   );
 
+  // Ændr antal
+  const decreaseQuantity = () => {
+    setQuantity((current) => Math.max(1, current - 1));
+  };
+
+  const increaseQuantity = () => {
+    setQuantity((current) => current + 1);
+  };
+
+  // Tilføj valgt antal til kurven
   const handleAddToCart = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    addToCart(product);
+
+    addToCart(product, quantity);
+
+    // Nulstil mængdevælger efter tilføjelse
+    setQuantity(1);
   };
 
   const handleToggleFavorite = (event) => {
@@ -125,17 +142,62 @@ export default function ProductCard({ product, compact = false }) {
         </div>
       </Link>
 
-      {/* PRODUCT PRICE AND ADD TO CART */}
+      {/* PRODUCT PRICE AND QUANTITY */}
       <div className="px-3 pb-3">
         <p
           className={`
-            mb-2 font-semibold text-primary
+            mb-3 font-semibold text-primary
             ${compact ? "text-sm" : "text-base"}
           `}
         >
           ${product.price.toFixed(2)}
         </p>
 
+        {/* QUANTITY SELECTOR */}
+        <div className="mb-3 flex items-center justify-between rounded-lg border border-border p-1">
+          <span className="pl-2 text-xs text-text-secondary">
+            Quantity
+          </span>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={decreaseQuantity}
+              disabled={quantity <= 1}
+              aria-label="Decrease quantity"
+              className="
+                flex h-8 w-8 items-center justify-center
+                rounded-md bg-background-secondary
+                transition-colors hover:bg-secondary
+                disabled:cursor-not-allowed disabled:opacity-40
+              "
+            >
+              −
+            </button>
+
+            <span
+              className="min-w-4 text-center text-sm font-semibold"
+              aria-live="polite"
+            >
+              {quantity}
+            </span>
+
+            <button
+              type="button"
+              onClick={increaseQuantity}
+              aria-label="Increase quantity"
+              className="
+                flex h-8 w-8 items-center justify-center
+                rounded-md bg-background-secondary
+                transition-colors hover:bg-secondary
+              "
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+        {/* ADD TO CART */}
         <button
           type="button"
           onClick={handleAddToCart}

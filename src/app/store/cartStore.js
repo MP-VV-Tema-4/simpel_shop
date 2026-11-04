@@ -1,5 +1,4 @@
 
-
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -8,8 +7,13 @@ export const useCartStore = create(
     (set) => ({
       cart: [],
 
-      addToCart: (product) =>
+      addToCart: (product, quantity = 1) =>
         set((state) => {
+          const amount = Math.max(
+            1,
+            Math.floor(Number(quantity) || 1)
+          );
+
           const existingProduct = state.cart.find(
             (item) => item.id === product.id
           );
@@ -18,27 +22,37 @@ export const useCartStore = create(
             return {
               cart: state.cart.map((item) =>
                 item.id === product.id
-                  ? { ...item, quantity: item.quantity + 1 }
+                  ? {
+                      ...item,
+                      quantity: (item.quantity || 0) + amount,
+                    }
                   : item
               ),
             };
           }
 
           return {
-            cart: [...state.cart, { ...product, quantity: 1 }],
+            cart: [
+              ...state.cart,
+              { ...product, quantity: amount },
+            ],
           };
         }),
 
       removeFromCart: (productId) =>
         set((state) => ({
-          cart: state.cart.filter((item) => item.id !== productId),
+          cart: state.cart.filter(
+            (item) => item.id !== productId
+          ),
         })),
 
       updateQuantity: (productId, quantity) =>
         set((state) => ({
           cart:
             quantity <= 0
-              ? state.cart.filter((item) => item.id !== productId)
+              ? state.cart.filter(
+                  (item) => item.id !== productId
+                )
               : state.cart.map((item) =>
                   item.id === productId
                     ? { ...item, quantity }
