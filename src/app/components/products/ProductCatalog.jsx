@@ -1,118 +1,121 @@
 
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Fuse from "fuse.js";
 import ProductFilters from "./ProductFilters";
 import ProductCard from "./ProductCard";
 
 export default function ProductCatalog({
-  products,
+  products = [],
   query = "",
   children,
 }) {
-  const highestPrice = Math.ceil(
-    Math.max(0, ...products.map((product) => product.price))
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Kun produkter fra Groceries
+  const groceryProducts = useMemo(
+    () => products.filter((product) => product.category === "groceries"),
+    [products]
+  );
+
+  const highestPrice = Math.max(
+    ...groceryProducts.map((product) => product.price),
+    0
   );
 
   const [maxPrice, setMaxPrice] = useState(highestPrice);
-  const [minRating, setMinRating] = useState("0");
+  const [minRating, setMinRating] = useState(0);
   const [sortBy, setSortBy] = useState("default");
+  const [selectedCategory, setSelectedCategory] = useState("groceries");
 
-  const searchTerm = query.trim();
+  useEffect(() => {
+    setMaxPrice(highestPrice);
+  }, [highestPrice]);
 
-  const fuse = new Fuse(products, {
-    keys: ["title", "description", "category"],
-    threshold: 0.4,
-    ignoreLocation: true,
+  // Søgning
+  const fuse = useMemo(
+    () =>
+      new Fuse(groceryProducts, {
+        keys: ["title", "description", "category"],
+        threshold: 0.35,
+      }),
+    [groceryProducts]
+  );
+
+  const searchResults = query.trim()
+    ? fuse.search(query).map((result) => result.item)
+    : groceryProducts;
+
+  // Filtrering
+  const filteredProducts = searchResults.filter((product) => {
+    const matchesCategory =
+      selectedCategory === "all" ||
+      product.category === selectedCategory;
+
+    const matchesPrice = product.price <= maxPrice;
+    const matchesRating = product.rating >= minRating;
+
+    return matchesCategory && matchesPrice && matchesRating;
   });
 
-  const exactMatch = products.some(
-    (product) =>
-      product.title.toLowerCase() === searchTerm.toLowerCase()
-  );
+  // Sortering
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortBy === "price-low") return a.price - b.price;
+    if (sortBy === "price-high") return b.price - a.price;
+    if (sortBy === "rating") return b.rating - a.rating;
 
-  const searchResults = searchTerm
-    ? fuse.search(searchTerm).map((result) => result.item)
-    : products;
+    return 0;
+  });
 
-  let filteredProducts = searchResults.filter(
-    (product) =>
-      product.price <= maxPrice &&
-      product.rating >= Number(minRating)
-  );
-
-  if (sortBy === "price-low") {
-    filteredProducts.sort((a, b) => a.price - b.price);
-  } else if (sortBy === "price-high") {
-    filteredProducts.sort((a, b) => b.price - a.price);
-  } else if (sortBy === "name") {
-    filteredProducts.sort((a, b) =>
-      a.title.localeCompare(b.title)
-    );
-  }
-
-  function resetFilters() {
+  // Nulstil alle filtre og søgning
+  const resetFilters = () => {
     setMaxPrice(highestPrice);
-    setMinRating("0");
+    setMinRating(0);
     setSortBy("default");
-  }
+    setSelectedCategory("groceries");
+
+    // Fjern søgningen fra URL'en
+    router.replace(pathname);
+  };
 
   return (
-    <div className="
-      grid
-      grid-cols-1
-      gap-8
-      md:grid-cols-[220px_minmax(0,1fr)]
-    ">
+    <section className="grid grid-cols-1 gap-8 md:grid-cols-[240px_1fr]">
       <ProductFilters
+        categories={["groceries"]}
         maxPrice={maxPrice}
-        setMaxPrice={setMaxPrice}
         highestPrice={highestPrice}
+        setMaxPrice={setMaxPrice}
         minRating={minRating}
         setMinRating={setMinRating}
         sortBy={sortBy}
         setSortBy={setSortBy}
-        onReset={resetFilters}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        resetFilters={resetFilters}
       />
 
-      <section className="min-w-0">
-
+      <div>
         {children}
 
-        {searchTerm && !exactMatch && filteredProducts.length > 0 && (
-          <p className="mb-3 text-sm text-text-secondary">
-            No exact matches for "{query}" — here are some products
-            you might mean:
-          </p>
-        )}
-
-        <p className="mb-5 text-sm text-text-secondary">
-          Showing {filteredProducts.length} products
+        <p className="mb-4 text-sm text-gray-500">
+          {sortedProducts.length} produkter fundet
         </p>
 
-        {filteredProducts.length > 0 ? (
-          <div className="
-            grid
-            grid-cols-2
-            gap-5
-            lg:grid-cols-3
-            xl:grid-cols-4
-          ">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="py-10 text-text-secondary">
-            No products match your search or filters.
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+
+        {sortedProducts.length === 0 && (
+          <p className="py-10 text-center">
+            Ingen produkter matcher dine filtre.
           </p>
         )}
-
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
