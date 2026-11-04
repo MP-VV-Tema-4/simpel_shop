@@ -1,4 +1,6 @@
 
+import Link from "next/link";
+
 export default function ProductHero() {
   return (
     <section className="
@@ -45,7 +47,7 @@ export default function ProductHero() {
           Discover our selection of fresh favourites.
         </p>
 
-        <a
+        <Link
           href="#products"
           className="
             inline-block
@@ -62,7 +64,7 @@ export default function ProductHero() {
           "
         >
           EXPLORE PRODUCTS
-        </a>
+        </Link>
 
       </div>
 
