@@ -5,13 +5,105 @@
   --foreground: #171717;
 }
 
+/* ========================================
+   1. COLOR PALETTE
+======================================== */
+
+:root {
+  /* Brand colors */
+  --color-primary: #FF995E;
+  --color-secondary: #F2C6A0;
+  --color-accent: #E76F51;
+
+  /* Neutral colors */
+  --color-white: #FFFFFF;
+  --color-black: #000;
+  --color-grey: #A6A6A6;
+
+  /* Background colors */
+  --background: #FFFFFF;
+  --background-secondary: #FFF5ED;
+
+  /* Text colors */
+  --foreground: #191919;
+  --text-secondary: #666666;
+
+  /* Border colors */
+  --border: #E5E5E5;
+
+  /* Transparent colors */
+  --color-primary-50: #FF995E80;
+  --color-black-50: #19191980;
+}
+
+
+/* ========================================
+   TYPOGRAPHY
+======================================== */
+
+:root {
+  /* Font families */
+  --heading-font: var(--font-heading);
+  --body-font: var(--font-body);
+
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 3rem;
+  --text-4xl: 2.5rem;
+
+  /* Font weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Line heights */
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+}
+
+/* Global typography */
+body {
+  font-family: var(--body-font);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+
+p {
+  font-family: var(--body-font);
+  line-height: var(--leading-relaxed);
+}
+/* ========================================
+   Light theme
+======================================== */
 @theme inline {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-border: var(--border);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
+/* ========================================
+  DARK THEME
+======================================== */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

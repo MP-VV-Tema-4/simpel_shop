@@ -6,7 +6,11 @@ import Fuse from "fuse.js";
 import ProductFilters from "./ProductFilters";
 import ProductCard from "./ProductCard";
 
-export default function ProductCatalog({ products, query = "", children }) {
+export default function ProductCatalog({
+  products,
+  query = "",
+  children,
+}) {
   const highestPrice = Math.ceil(
     Math.max(0, ...products.map((product) => product.price))
   );
@@ -55,7 +59,12 @@ export default function ProductCatalog({ products, query = "", children }) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-[220px_minmax(0,1fr)]">
+    <div className="
+      grid
+      grid-cols-1
+      gap-8
+      md:grid-cols-[220px_minmax(0,1fr)]
+    ">
       <ProductFilters
         maxPrice={maxPrice}
         setMaxPrice={setMaxPrice}
@@ -68,29 +77,41 @@ export default function ProductCatalog({ products, query = "", children }) {
       />
 
       <section className="min-w-0">
+
         {children}
+
         {searchTerm && !exactMatch && filteredProducts.length > 0 && (
-          <p className="mb-3 text-sm text-gray-600">
+          <p className="mb-3 text-sm text-text-secondary">
             No exact matches for "{query}" — here are some products
             you might mean:
           </p>
         )}
 
-        <p className="mb-5 text-sm text-gray-500">
+        <p className="mb-5 text-sm text-text-secondary">
           Showing {filteredProducts.length} products
         </p>
 
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="
+            grid
+            grid-cols-2
+            gap-5
+            lg:grid-cols-3
+            xl:grid-cols-4
+          ">
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
             ))}
           </div>
         ) : (
-          <p className="py-10 text-gray-500">
+          <p className="py-10 text-text-secondary">
             No products match your search or filters.
           </p>
         )}
+
       </section>
     </div>
   );

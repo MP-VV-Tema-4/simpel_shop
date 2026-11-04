@@ -24,27 +24,40 @@ export default function ProductList({
     : products;
 
   if (filteredProducts.length === 0) {
-    return <p>No grocery products match your search.</p>;
+    return (
+      <p className="text-sm text-text-secondary">
+        No grocery products match your search.
+      </p>
+    );
   }
 
   return (
     <>
       {hasSearched && !searchTerm && (
-        <p className="mb-4 text-gray-600">
+        <p className="mb-4 text-sm text-text-secondary">
           Enter a product name to search.
         </p>
       )}
 
       {searchTerm && !exactMatch && (
-        <p className="mb-4 text-gray-600">
+        <p className="mb-4 text-sm text-text-secondary">
           No exact match for "{query}" — here are some
           products you might be looking for:
         </p>
       )}
 
-      <div className="grid grid-cols-2 gap-5 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="
+        grid
+        grid-cols-2
+        gap-5
+        lg:grid-cols-3
+        xl:grid-cols-4
+      ">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+          />
         ))}
       </div>
     </>

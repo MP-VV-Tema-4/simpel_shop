@@ -1,123 +1,92 @@
 
 export default function ProductHero() {
   return (
-    <>
-      <section className="product-hero">
-        <div className="product-hero-content">
-          <span className="product-hero-label">
-            FRESH & NATURAL
-          </span>
+    <section className="
+      flex flex-col sm:flex-row
+      items-center justify-between
+      gap-4 sm:gap-[30px]
+      min-h-[260px]
+      p-6 sm:py-8 sm:px-[38px]
+      rounded-2xl
+      overflow-hidden
+      bg-background-secondary
+      transition-colors duration-300
+    ">
 
-          <h2>Freshly squeezed.</h2>
+      {/* HERO CONTENT */}
+      <div className="flex-1 max-w-[420px]">
 
-          <p>
-            Bring a little freshness into your everyday.
-            Discover our selection of fresh favourites.
-          </p>
+        <span className="
+          inline-block
+          mb-3
+          text-[11px]
+          font-bold
+          tracking-[2px]
+          uppercase
+          text-accent
+        ">
+          FRESH & NATURAL
+        </span>
 
-          <a href="#products" className="product-hero-button">
-            EXPLORE PRODUCTS
-          </a>
-        </div>
+        <h2 className="
+          mb-3.5
+          text-[clamp(28px,3vw,42px)]
+          text-foreground
+        ">
+          Freshly squeezed.
+        </h2>
 
-        <div className="product-hero-image">
-          <img
-            src="https://images.unsplash.com/photo-1694886712783-5eefee63cedc?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
-            alt="Fresh orange juice"
-          />
-        </div>
-      </section>
+        <p className="
+          mb-6
+          text-sm
+          text-text-secondary
+        ">
+          Bring a little freshness into your everyday.
+          Discover our selection of fresh favourites.
+        </p>
 
-      <style>{`
-        .product-hero {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 30px;
-          min-height: 260px;
-          padding: 32px 38px;
-          background: #e8e9d9;
-          border-radius: 16px;
-          overflow: hidden;
-        }
+        <a
+          href="#products"
+          className="
+            inline-block
+            rounded-full
+            px-6 py-3
+            bg-primary
+            text-white
+            text-[11px]
+            font-bold
+            tracking-[1px]
+            uppercase
+            hover:opacity-70
+            transition-all
+          "
+        >
+          EXPLORE PRODUCTS
+        </a>
 
-        .product-hero-content {
-          flex: 1;
-          max-width: 420px;
-        }
+      </div>
 
-        .product-hero-label {
-          display: inline-block;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 2px;
-          color: #687451;
-          margin-bottom: 12px;
-        }
+      {/* HERO IMAGE */}
+      <div className="
+        w-full sm:w-[38%]
+        min-h-[160px] sm:min-h-[260px]
+        sm:self-stretch
+        sm:-mr-8
+        overflow-hidden
+      ">
+        <img
+          src="https://images.unsplash.com/photo-1694886712783-5eefee63cedc?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+          alt="Fresh orange juice"
+          className="
+            block
+            w-full h-full
+            min-h-[160px] sm:min-h-[260px]
+            object-cover
+            rounded-[25px]
+          "
+        />
+      </div>
 
-        .product-hero h2 {
-          font-size: clamp(28px, 3vw, 42px);
-          line-height: 1.1;
-          color: #344735;
-          margin: 0 0 14px;
-        }
-
-        .product-hero p {
-          font-size: 14px;
-          line-height: 1.7;
-          color: #59624c;
-          margin-bottom: 24px;
-        }
-
-        .product-hero-button {
-          display: inline-block;
-          padding: 12px 22px;
-          background: #344735;
-          color: #fff;
-          border-radius: 30px;
-          text-decoration: none;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          transition: background 0.2s ease;
-        }
-
-        .product-hero-button:hover {
-          background: #596b4c;
-        }
-
-  .product-hero-image {
-  flex: 0 0 38%;
-  min-height: 260px;
-  height: 100%;
-  margin: -32px -32px -32px 0;
-}
-
-.product-hero-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 260px;
-  object-fit: cover;
-  border-radius: 25px;
-}
-
-        @media (max-width: 600px) {
-          .product-hero {
-            padding: 24px;
-            gap: 16px;
-          }
-
-          .product-hero-image {
-            flex: 0 0 35%;
-            height: 160px;
-          }
-
-          .product-hero p {
-            font-size: 12px;
-          }
-        }
-      `}</style>
-    </>
+    </section>
   );
 }

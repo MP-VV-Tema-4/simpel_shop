@@ -23,81 +23,202 @@ export default async function RecipeSection() {
   }
 
   return (
-    <section className="w-full px-6 py-14 md:px-12">
-      <div className="mx-auto max-w-6xl">
+    <section className="
+      w-full
+      px-6 py-14
+      md:px-12
+      bg-background
+      transition-colors duration-300
+    ">
+      <div className="
+        mx-auto
+        max-w-6xl
+      ">
 
-        {/* Section heading */}
+        {/* SECTION HEADING */}
         <div className="mb-8">
-          <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-400">
+
+          <p className="
+            mb-2
+            text-xs
+            font-medium
+            uppercase
+            tracking-[0.2em]
+            text-text-secondary
+          ">
             Food inspiration
           </p>
 
-          <h2 className="text-2xl font-semibold text-gray-900 md:text-3xl">
+          <h2 className="
+            text-2xl
+            text-foreground
+            md:text-3xl
+          ">
             Recipes to inspire you
           </h2>
 
-          <p className="mt-2 max-w-xl text-sm text-gray-500">
+          <p className="
+            mt-2
+            max-w-xl
+            text-sm
+            text-text-secondary
+          ">
             Discover new favourites and find inspiration for your next meal.
           </p>
+
         </div>
 
-        {/* Recipe cards */}
+        {/* RECIPE CARDS */}
         {recipes.length > 0 ? (
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+          <div className="
+            grid
+            grid-cols-2
+            gap-6
+            md:grid-cols-4
+            md:gap-8
+          ">
+
             {recipes.map((recipe) => (
               <Link
                 key={recipe.id}
                 href={`/recipes/${recipe.id}`}
-                className="group overflow-hidden rounded-xl border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className="
+                  group
+                  overflow-hidden
+                  rounded-xl
+                  border border-border
+                  bg-background-card
+                  transition-all duration-300
+                  hover:-translate-y-1
+                  hover:shadow-lg
+                "
               >
-                {/* Image */}
-                <div className="relative overflow-hidden bg-gray-100">
+
+                {/* IMAGE */}
+                <div className="
+                  relative
+                  overflow-hidden
+                  bg-background-secondary
+                ">
+
                   <img
                     src={recipe.image}
                     alt={recipe.name}
-                    className="h-32 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-40 md:h-44"
+                    className="
+                      h-32
+                      w-full
+                      object-cover
+                      transition-transform duration-500
+                      group-hover:scale-105
+                      sm:h-40
+                      md:h-44
+                    "
                   />
 
-                  <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-gray-600 backdrop-blur-sm">
+                  <span className="
+                    absolute
+                    left-2 top-2
+                    rounded-full
+                    bg-background-card/90
+                    px-2.5 py-1
+                    text-[10px]
+                    font-medium
+                    uppercase
+                    tracking-wide
+                    text-text-secondary
+                    backdrop-blur-sm
+                  ">
                     {recipe.cuisine}
                   </span>
+
                 </div>
 
-                {/* Content */}
+                {/* CONTENT */}
                 <div className="p-3 sm:p-4">
 
-                  <h3 className="line-clamp-2 min-h-10 text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-gray-500 sm:text-base">
+                  <h3 className="
+                    min-h-10
+                    line-clamp-2
+                    text-sm
+                    leading-snug
+                    text-foreground
+                    transition-colors
+                    group-hover:text-text-secondary
+                    sm:text-base
+                  ">
                     {recipe.name}
                   </h3>
 
-                  {/* Details */}
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-md bg-gray-50 px-2 py-1 text-[11px] text-gray-500">
+                  {/* RECIPE DETAILS */}
+                  <div className="
+                    mt-3
+                    flex
+                    flex-wrap
+                    gap-2
+                  ">
+
+                    <span className="
+                      rounded-md
+                      bg-background-secondary
+                      px-2 py-1
+                      text-[11px]
+                      text-text-secondary
+                    ">
                       ⏱ {recipe.prepTimeMinutes + recipe.cookTimeMinutes} min
                     </span>
 
-                    <span className="rounded-md bg-gray-50 px-2 py-1 text-[11px] text-gray-500">
+                    <span className="
+                      rounded-md
+                      bg-background-secondary
+                      px-2 py-1
+                      text-[11px]
+                      text-text-secondary
+                    ">
                       {recipe.difficulty}
                     </span>
+
                   </div>
 
-                  {/* Bottom link */}
-                  <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3">
-                    <span className="text-[11px] text-gray-400">
+                  {/* BOTTOM LINK */}
+                  <div className="
+                    mt-4
+                    flex
+                    items-center
+                    justify-between
+                    border-t border-border
+                    pt-3
+                  ">
+
+                    <span className="
+                      text-[11px]
+                      text-text-secondary
+                    ">
                       {recipe.servings} servings
                     </span>
 
-                    <span className="text-xs font-medium text-gray-800 transition-opacity duration-300 group-hover:opacity-50">
-  View recipe →
-</span>
+                    <span className="
+                      text-xs
+                      font-medium
+                      text-primary
+                      transition-opacity duration-300
+                      group-hover:opacity-50
+                    ">
+                      View recipe →
+                    </span>
+
                   </div>
 
                 </div>
+
               </Link>
             ))}
+
           </div>
         ) : (
-          <p className="text-sm text-gray-500">
+          <p className="
+            text-sm
+            text-text-secondary
+          ">
             Recipes could not be loaded. Please try again later.
           </p>
         )}
