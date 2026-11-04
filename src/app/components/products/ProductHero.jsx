@@ -22,7 +22,7 @@ export default function ProductHero() {
 
         <div className="product-hero-image">
           <img
-            src="https://images.unsplash.com/photo-1694886712783-5eefee63cedc?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            src="https://images.unsplash.com/photo-1663988335414-4714d2e1f401?q=80&w=1146&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
             alt="Fresh orange juice"
           />
         </div>
@@ -36,7 +36,7 @@ export default function ProductHero() {
           gap: 30px;
           min-height: 260px;
           padding: 32px 38px;
-          background: #e8e9d9;
+          background: #F28241;
           border-radius: 16px;
           overflow: hidden;
         }
