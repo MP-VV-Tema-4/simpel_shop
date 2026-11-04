@@ -56,6 +56,7 @@ export default function Hero() {
       from-background-secondary
       to-background
       transition-colors duration-300
+      bg-secondary
     ">
 
       <div className="
@@ -77,12 +78,14 @@ export default function Hero() {
           sm:gap-6
           lg:gap-10
           min-h-64
+          
         ">
 
           {/* HERO TEXT */}
           <div className="
             max-w-[30rem]
             sm:pl-4
+            
           ">
 
             <span className="

@@ -64,7 +64,7 @@ export default function Header() {
               className="
                 text-xs font-semibold uppercase tracking-wide
                 text-foreground transition-colors duration-200
-                hover:text-text-secondary sm:text-sm
+                hover:text-foreground/50 sm:text-sm
               "
             >
               Home
@@ -77,7 +77,7 @@ export default function Header() {
               className="
                 text-xs font-semibold uppercase tracking-wide
                 text-foreground transition-colors duration-200
-                hover:text-text-secondary sm:text-sm
+                hover:text-foreground/50 sm:text-sm
               "
             >
               Products
@@ -162,7 +162,7 @@ export default function Header() {
             whitespace-nowrap
             text-xs font-semibold uppercase tracking-wide
             text-foreground transition-colors duration-200
-            hover:text-text-secondary sm:text-sm
+            hover:text-foreground/50 sm:text-sm
           "
         >
           <svg
