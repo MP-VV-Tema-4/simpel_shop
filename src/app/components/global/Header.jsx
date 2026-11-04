@@ -1,14 +1,54 @@
 
+"use client";
+
 import Link from "next/link";
+import { useFavoritesStore } from "../../store/FavoritesStore";
+import { useCartStore } from "../../store/cartStore";
 
 export default function Header() {
+  const favoriteCount = useFavoritesStore(
+    (state) => state.favorites.length
+  );
+
+  const cartCount = useCartStore((state) =>
+    state.cart.reduce(
+      (total, item) => total + (item.quantity || 1),
+      0
+    )
+  );
+
   return (
     <>
       <header className="site-header">
         <nav className="site-nav" aria-label="Main navigation">
           <ul className="nav-links">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/products">Products</Link></li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+
+            <li>
+              <Link href="/products">Products</Link>
+            </li>
+
+            <li>
+              <Link href="/favorites" className="favorites-link">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" />
+                </svg>
+
+                <span>Favorites ({favoriteCount})</span>
+              </Link>
+            </li>
           </ul>
 
           <form className="search-form" action="/products" method="GET">
@@ -53,7 +93,8 @@ export default function Header() {
               <circle cx="20" cy="21" r="1" />
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
             </svg>
-            <span>Cart</span>
+
+            <span>Cart ({cartCount})</span>
           </Link>
         </nav>
       </header>
@@ -92,6 +133,7 @@ export default function Header() {
         .site-nav .cart-link {
           display: inline-flex;
           align-items: center;
+          gap: 0.4rem;
           color: #222;
           font-size: 0.9rem;
           font-weight: 600;
@@ -99,11 +141,16 @@ export default function Header() {
           text-transform: uppercase;
           letter-spacing: 0.04em;
           transition: color 0.2s ease;
+          white-space: nowrap;
         }
 
         .nav-links a:hover,
         .site-nav .cart-link:hover {
           color: #888;
+        }
+
+        .favorites-link svg {
+          flex-shrink: 0;
         }
 
         .search-form {
@@ -152,7 +199,6 @@ export default function Header() {
           justify-self: end;
           flex-direction: row;
           gap: 0.6rem;
-          white-space: nowrap;
           line-height: normal;
         }
 
@@ -179,12 +225,12 @@ export default function Header() {
           }
 
           .nav-links {
-            gap: 1.25rem;
+            gap: 1rem;
           }
 
           .nav-links a,
           .site-nav .cart-link {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
           }
         }
       `}</style>

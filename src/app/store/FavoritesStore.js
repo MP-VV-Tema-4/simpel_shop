@@ -1,31 +1,41 @@
 
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-export const useFavoritesStore = create((set) => ({
-  favorites: [],
+export const useFavoritesStore = create(
+  persist(
+    (set) => ({
+      favorites: [],
 
-  // Tilføj eller fjern et produkt fra favoritter
-  toggleFavorite: (product) =>
-    set((state) => {
-      const isFavorite = state.favorites.some(
-        (item) => item.id === product.id
-      );
+      // Tilføj eller fjern et produkt fra favoritter
+      toggleFavorite: (product) =>
+        set((state) => {
+          const isFavorite = state.favorites.some(
+            (item) => item.id === product.id
+          );
 
-      return {
-        favorites: isFavorite
-          ? state.favorites.filter((item) => item.id !== product.id)
-          : [...state.favorites, product],
-      };
+          return {
+            favorites: isFavorite
+              ? state.favorites.filter(
+                  (item) => item.id !== product.id
+                )
+              : [...state.favorites, product],
+          };
+        }),
+
+      // Fjern et produkt fra favoritter
+      removeFavorite: (productId) =>
+        set((state) => ({
+          favorites: state.favorites.filter(
+            (item) => item.id !== productId
+          ),
+        })),
+
+      // Tøm favoritlisten
+      clearFavorites: () => set({ favorites: [] }),
     }),
-
-  // Fjern et produkt fra favoritter
-  removeFavorite: (productId) =>
-    set((state) => ({
-      favorites: state.favorites.filter(
-        (item) => item.id !== productId
-      ),
-    })),
-
-  // Tøm favoritlisten
-  clearFavorites: () => set({ favorites: [] }),
-}));
+    {
+      name: "favorites-storage",
+    }
+  )
+);
